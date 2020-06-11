@@ -28,46 +28,163 @@ for i in welcome_text:  # делает буквы цветными
         print(Fore.GREEN, i, end='', sep='')
         sys.stdout.flush()  # антиперенос строки
 
+def titers():
+    titer = ('Титры\nКод писали\nRaYou\n9nimos1\n')
+    for i in titer:
+        if i == '\n':
+            sleep(0.75)
+            print(i)
+        else:
+            print(i, end='')
+
 
 def ass_hack():
+    '''Взламывает ж#пу по имени хозяйки'''
+    
     girl_name = input('Введите имя подруги ')
     print(f'{girl_name.capitalize()} нехуйная телка, но ее фотки я тебе не покажу')
     sleep(2)
 
 
 def social_engineers():
+    '''Взламывает школьника по имени'''
+    
     print(
-        'Этот метод взлома очень опасен, его придумал самый известный хакер-ютубер, его имя dumbuuz\n, ни в коем случае не путать его с Дамбасом')
+        'Этот метод взлома очень опасен, его придумал самый известный хакер-ютубер, его имя dumbuuz2, ни в коем случае не путать его с Дамбасом')
     print(
-        'Для начал введите имя школьника, над которым вы хотите поиздеваться в скайпе,\n за то, что он украл у Вас скину из КаЭсГО')
+        'Для начал введите имя школьника, над которым вы хотите поиздеваться в скайпе, за то, что он украл у Вас скину из КаЭсГО')
     name_student = input('')
     print(f'Взлом {name_student} начался')
     for i in ('##########'):
         print(i, end='')
-        sys.stdout.flush()  # вывод на 1-ой строке
+        sys.stdout.flush()
         sleep(0.5)
     print('\nВзлом успешно завершен, мы выслали Ваши пароли в милицию, теперь Вас посадят')
     sleep(1)
 
 
-status = True
+def hack_defense_system():
+    '''Взламывает оборонную систему, в случае неудачи вызывает ФБР вам на дом'''
 
+    def on_fail():
+        '''Вызывается в случае неудачного взлома'''
+
+        print(Fore.RED, 'Взлом не удался. Мы передали ваши данные ФБР. ' + \
+              'У вас есть 3 секунды что бы эвакуироваться в окно.', sep='', end='\n' * 2)
+        print('Вашу дверь выламают через...')
+
+        for i in '54321': # Остчёт до взлома двери
+
+            # Ставим слово "секунда" в нужный падеж
+            if i == '5':
+                word = ' секунд'
+            elif i == '1':
+                word = ' секунду'
+            else:
+                word = ' секунды'
+
+            # \r означает, что текст напечатается вместо напечатанного ранее
+            print('\r', Fore.GREEN, i, Fore.WHITE, word, end='', flush=True)
+            sys.stdout.flush()
+
+            sleep(1)
+
+        print('\nПоздравляем! Вы попались ФБР!\nОдним мамкиным хацкером стало меньше... Но оно и к лучшему')
+        print('Взлом завершился с кодом 666228')
+        return(666228)
+
+
+    if bool(randint(0, 1)): # Взлом удастся?
+        sleep(0.75)
+        print(Fore.GREEN, 'Удалось обойти систему защиты', sep='0')
+
+        sleep(0.25)
+        print(Fore.YELLOW, 'Продолжаю взлом...', sep='')
+
+        sleep(0.5)
+        print(Fore.WHITE, 'Прогресс: ', sep='')
+
+        for count in range(51):
+            print('\r', Fore.GREEN, '[', "#" * count, " " * (50 - count), ']',\
+                  str(count * 2),'%',\
+                  sep='', end='', flush=True)
+
+            sys.stdout.flush()# Печатает зелёным цветом прогрессбар. count * 2 это процент
+            # т. к. (count / 50) * 100% = count * 2%
+
+            if count == 34:
+                print(Fore.YELLOW, '''\nTraceback(most recent call last):
+    File ass_hack.py, in <module>:
+        hack_defense_system()
+    File ass_hack.py, in hack_defense_system():
+        ready()
+    File super_hacker.py, in ready:
+        socket.open("Пентагон")
+                     ^~~~~~~~
+AccesError: Unable to connect to "Пентагон"''')
+
+                print(Fore.WHITE, 'Сэр, нас спалили!', sep='', end=' ')
+                sleep(0.75)
+
+                print('И взломали!')
+                sleep(0.75)
+
+                print('Они знают ваши пароли')
+                sleep(1.7)
+
+                print('Они вычислили вас по IPv4!')
+                sleep(0.1999)
+
+                print('Ааа! Они стучатся к нам в дверь! Прыгай в окно!')
+                sleep(2)
+                return
+
+            sleep(randint(50, 100) / 85)
+
+    else:
+        try: # Если кто-то попытался остановить с помощью Ctrl+C
+            on_fail()
+        except KeyboardInterrupt:
+            print(Fore.GREEN, '\nПоздравляю, мразь, ты успел выпрыгнуть в окно, но сломал обе ноги.', sep='')
+            print(Fore.RED, 'Теперь ты лежишь в больнице, так что ФБР тебя всё равно возьмёт', sep='')
+            sleep(1.2)
+
+            try: print(Fore.BLUE, '*маниакальный смех*\n' * randint(100, 1000), sep='')
+            except: pass
+            finally: # Уходим без ошибки в любом случае
+                print(Fore.WHITE, 'Программа завершилась с выходным кодом -228', sep='')
+                exit(-228)
+
+
+
+
+status = True
 while status:
     print('''\nСписок команд
+    0. Выход
     1. Взлом жеппы
     2. Взлом школьника
+    3. Взлом Пентагона
     ''')
+
     user_input = input('Введите команду\n')
 
-    if user_input.capitalize() == 'Взлом жеппы':
+    if user_input.capitalize() == 'Взлом жеппы' or user_input == '1':
         ass_hack()
-    elif user_input.capitalize() == 'Взлом школьника':
+    elif user_input.capitalize() == 'Взлом школьника' or user_input == '2':
         social_engineers()
+    elif user_input.capitalize() == 'Взлом пентагона' or user_input == '3':
+        hack_defense_system()
+    elif user_input.capitalize() == 'Выход' or user_input == '0':
+        titers()
+        status = False
+
+    
     elif user_input.capitalize() == 'Иди нахуй':
         status = False
     else:
         for i in 'иди нахуй':
             print(i, end='')
-            sys.stdout.flush()  # вывод на 1-ой строке
+            sys.stdout.flush()
             sleep(0.5)
 
